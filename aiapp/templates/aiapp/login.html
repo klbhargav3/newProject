@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block title %}
+Login
+{% endblock title %}
+
+{% block content %}
+<div class="login">
+<h1>Login</h1>
+<form method="post" action="{% url 'aiapp:login' %}">
+    {% csrf_token %}
+    {{form}}
+    <input type="submit" value="login">
+    <p>Don't have an account <a href="{% url 'aiapp:signup' %}">Signup</a>
+    </div>
+{% endblock content %}

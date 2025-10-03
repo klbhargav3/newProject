@@ -1,0 +1,40 @@
+{% extends "layout.html" %}
+
+{% block title %}
+chat
+{% endblock title %}
+
+{% block content %}
+
+<nav class="nav">
+<a href="{% url 'aiapp:logout' %}">Logout</a> |
+<a href="{% url 'aiapp:history' %}">History</a>
+</nav>
+
+
+
+    
+<div class="chat">
+    <h1>Chat with AI</h1>
+    
+    <form method="post" enctype="multipart/form-data" action="{% url 'aiapp:chat'%}">
+        {% csrf_token %}
+        <input type="file" name="file" accept="application/pdf">
+        <div class="input-group">
+            <input type="text" name="input" placeholder="Type your message..." required>
+            <input type="hidden" name="con_id" value="{{conversation.id}}">
+            <input type="submit" value="Send">
+        
+    </form>
+</div>
+    <div class="chat-box">
+        {% for msg in messages %}
+            <p>
+                <strong>{{ msg.sender}}:</strong> {{ msg.content }}
+            </p>
+        {% endfor %}
+    </div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,154 @@
+body{
+    background-color:rgb(208, 198, 185);
+    color:black;
+}
+
+.login{
+    margin: 0 auto;
+    margin-top: 200px;
+    width: 400px;
+    height: 300px;
+    padding: 5px;
+    box-shadow: 0 10px 20px;
+    border-radius: 12px;
+    text-align: center;
+    background-color:rgb(213, 222, 199);
+}
+
+.login input[type="text"]{
+     padding: 5px 20px;
+     margin-bottom: 10px;
+     width: 200px;
+     font-size: 20px;
+     border: 2px solid black;
+     border-radius: 5px;
+}
+
+.login input[type="password"]{
+     padding: 5px 20px;
+     margin-bottom: 10px;
+     width: 200px;
+     font-size: 20px;
+     border: 2px solid black;
+     border-radius: 5px;
+}
+
+.login input[type="submit"]{
+      padding: 5px 10px;
+      background-color:blue;
+      color:white;
+      margin-right: 70px;
+      font-size: 20px;
+      border-radius: 5px;
+
+}
+
+.login label{
+   
+    font-size: 25px;
+    
+}
+
+.login p{
+    font-size: 25px;
+}
+
+a{
+    text-decoration: none;
+
+}
+a:hover{
+    color:red;
+}
+
+.signup{
+    margin: 0 auto;
+    margin-top: 100px;
+    width: 500px;
+    height: 550px;
+    padding: 5px;
+    box-shadow: 0 10px 20px;
+    border-radius: 12px;
+    text-align: left;
+    background-color:rgb(213, 222, 199); 
+}
+
+.signup h1{
+    text-align: center ;
+}
+
+.signup input[type="text"],input[type="password"]{
+     padding: 5px 20px;
+     margin-bottom: 10px;
+     width: 300px;
+     font-size: 20px;
+     border: 2px solid black;
+     border-radius: 5px;
+}
+
+.signup input[type="submit"]{
+      padding: 5px 10px;
+      margin-top: 5px;
+      background-color:blue;
+      color:white;
+      margin-right: 70px;
+      font-size: 20px;
+      border-radius: 5px;
+      margin-bottom: 0;
+
+}
+
+.signup label{
+    font-size: 25px; 
+}
+
+.signup p{
+    font-size: 25px;
+}
+
+.chat{
+    margin: 0  auto;
+    margin-bottom: 40px;
+    width: fit-content;
+    text-align: center;
+}
+
+.chat input[type="text"]{
+    padding: 10px 20px;
+    width: 600px;
+    border-radius: 12px;
+    font-size: 25px
+}
+
+.chat input[type="file"]{
+    font-size: larger;
+    padding: 5px;
+    height: 30px;
+    margin-right: 370px;
+    
+}
+
+.chat input[type="submit"]{
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-size: 25px;
+    background-color:blue;
+    color: white;
+    
+}
+
+.nav{
+    position: fixed;
+    font-size: 25px;
+}
+
+.chat-box{
+    text-align: center;
+    width: 600px;
+}  
+
+.chat-nav{
+    font-size: 30px;
+    
+}
+

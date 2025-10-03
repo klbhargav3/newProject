@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+{% block title %}History{% endblock title %}
+
+{% block content %}
+<nav class="chat-nav">
+<a href="{% url 'aiapp:history'%}">Chat History</a>
+</nav>
+{% for msg in messages %}
+<p><strong>{{ msg.sender }}:</strong> {{ msg.content}}</p>
+
+{% empty %}
+<p>No message to display</p>
+{% endfor %}
+
+{% endblock content %}
+
+
