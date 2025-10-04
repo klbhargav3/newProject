@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
 from . import rag,ai
-from django.contrib.auth.models import User
+
 
 
 def login_view(request):
@@ -13,7 +13,7 @@ def login_view(request):
         if form.is_valid():
             login(request,form.get_user())
             return redirect("aiapp:chat")
-        
+
     else:
         form=AuthenticationForm()
 
@@ -39,17 +39,17 @@ def logout_view(request):
 
 @login_required(login_url="aiapp:login")
 def chat_view(request,id=None):
+
+
     id=request.POST.get("con_id")
     if id:
         conversation=get_object_or_404(Conversation,id=id,user=request.user)
     else:
-          conversation = Conversation.objects.filter(user=request.user).order_by("created_at").last()
-          if not conversation:
-            conversation = Conversation.objects.create(user=request.user)
-
+          conversation = Conversation.objects.create(user=request.user)
     messages=conversation.messages.all().order_by("created_at")
     answer=""
-   
+
+
     if request.method=="POST":
         user_input=request.POST.get("input")
         file=request.FILES.get("file")
@@ -57,7 +57,6 @@ def chat_view(request,id=None):
         if conversation.title=="New Chat" and user_input:
           conversation.title=user_input[:50]
           conversation.save()
-    
 
         if user_input and file:
             answer=rag.get_rag(user_input,file)
@@ -67,7 +66,7 @@ def chat_view(request,id=None):
 
 
         if user_input:
-            Messages.objects.create(conversation=conversation,sender="user",content=user_input) 
+            Messages.objects.create(conversation=conversation,sender="user",content=user_input)
 
         if answer:
             Messages.objects.create(conversation=conversation,sender="assistant",content=answer)
