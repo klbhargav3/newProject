@@ -11,13 +11,14 @@ History
 
 <h1>Chat History</h1>
 {% for con in  conversations %}
-{% if con  %}
+{% if con.title != "New Chat" and con %}
 <ul>
 <li>  <a href="{% url 'aiapp:specific' con.id %}">{{con.title}}</a> </li>
 </ul>
-{% else %}
-<p>No conversation to display</p>
+
 {% endif %}
+
 {% endfor %}
+
 
 {% endblock content %}
