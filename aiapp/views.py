@@ -1,6 +1,5 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . models import Conversation,Messages
-from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
 from . import rag,ai
@@ -37,7 +36,7 @@ def logout_view(request):
     logout(request)
     return redirect("aiapp:login")
 
-@login_required(login_url="aiapp:login")
+
 def chat_view(request,id=None):
 
 
@@ -74,14 +73,14 @@ def chat_view(request,id=None):
     return render(request,"aiapp/chat.html",{"conversation":conversation,"messages":messages})
 
 
-@login_required(login_url="aiapp:login")
+
 def chat_history(request):
     conversations = request.user.conversations.all().order_by("-created_at")
     return render(request, "aiapp/history.html", {"conversations": conversations})
 
 
 
-@login_required(login_url="aiapp:login")
+
 def specific_history(request,id):
     if id:
       conversation=get_object_or_404(Conversation,id=id,user=request.user)
