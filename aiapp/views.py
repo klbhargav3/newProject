@@ -1,8 +1,8 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from . models import Conversation,Messages
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm,AuthenticationForm
 from django.contrib.auth import login,logout
-from django.contrib.auth.decorators import login_required
 from . import rag,ai
 
 
@@ -26,7 +26,7 @@ def signup_view(request):
         if form.is_valid():
             user=form.save()
             login(request,user)
-            return redirect("aiapp:login")
+            return redirect("aiapp:chat")
     else:
         form=UserCreationForm()
 
@@ -38,14 +38,16 @@ def logout_view(request):
     return redirect("aiapp:login")
 
 @login_required(login_url="aiapp:login")
-def chat_view(request,id=None):
+def chat_view(request):
 
+    con_id=request.POST.get("con_id")
 
-    id=request.POST.get("con_id")
-    if id:
-        conversation=get_object_or_404(Conversation,id=id,user=request.user)
+    if con_id:
+      conversation=get_object_or_404(Conversation,id=id,user=request.user)
+
     else:
           conversation = Conversation.objects.create(user=request.user)
+
     messages=conversation.messages.all().order_by("created_at")
     answer=""
 
@@ -71,6 +73,8 @@ def chat_view(request,id=None):
         if answer:
             Messages.objects.create(conversation=conversation,sender="assistant",content=answer)
 
+        messages=conversation.messages.all().order_by("created_at")
+
     return render(request,"aiapp/chat.html",{"conversation":conversation,"messages":messages})
 
 
@@ -78,7 +82,6 @@ def chat_view(request,id=None):
 def chat_history(request):
     conversations = request.user.conversations.all().order_by("-created_at")
     return render(request, "aiapp/history.html", {"conversations": conversations})
-
 
 
 @login_required(login_url="aiapp:login")
