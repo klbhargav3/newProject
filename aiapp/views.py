@@ -43,7 +43,7 @@ def chat_view(request):
     con_id=request.POST.get("con_id")
 
     if con_id:
-      conversation=get_object_or_404(Conversation,id=id,user=request.user)
+      conversation=get_object_or_404(Conversation,id=con_id,user=request.user)
 
     else:
           conversation = Conversation.objects.create(user=request.user)
